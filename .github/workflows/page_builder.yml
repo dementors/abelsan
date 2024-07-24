@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 'latest' # Use the latest Python version
+          python-version: '3.12.0' # specifying latest does not work
 
       - name: Install BeautifulSoup
         run: |
