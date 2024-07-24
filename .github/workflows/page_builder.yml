@@ -2,7 +2,8 @@ name: Daily Webpage Generation
 
 on:
   schedule:
-    - cron: '0 12 * * *' # This cron expression runs the action every day at 12:00 UTC
+    - cron: '0 17 * * *' # This cron expression runs the action every day at 17:00 UTC, which is 12:00 noon EST
+  workflow_dispatch:
 
 jobs:
   generate-webpage:
