@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # RSS feed URLs
+#     'Substack': 'https://abelsan.substack.com/feed',
 feeds = {
-    'Substack': 'https://abelsan.substack.com/feed',
     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
     'Spotify Podcast': 'https://anchor.fm/s/f8df75fc/podcast/rss'
 }
