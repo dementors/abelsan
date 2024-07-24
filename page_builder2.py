@@ -2,8 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 
 # RSS feed URLs
+# https://abelsan.substack.com/feed
+# direct substact URL failed in github, 
+# workaround is to use pipedream 
 feeds = {
-    'Substack': 'https://abelsan.substack.com/feed',
+    'Substack': 'https://eonx51tpttmlx5j.m.pipedream.net',
     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
     'Spotify Podcast': 'https://anchor.fm/s/f8df75fc/podcast/rss'
 }
