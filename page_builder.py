@@ -2,21 +2,31 @@ import requests
 from bs4 import BeautifulSoup
 
 # RSS feed URLs
+# https://abelsan.substack.com/feed
+# direct substact URL failed in github, 
+# workaround is to use pipedream 
 feeds = {
-    'Substack': 'https://abelsan.substack.com/feed',
+    'Substack': 'https://eonx51tpttmlx5j.m.pipedream.net',
     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
     'Spotify Podcast': 'https://anchor.fm/s/f8df75fc/podcast/rss'
 }
 
 # Function to fetch and parse the RSS feed
 def fetch_feed(url):
-    response = requests.get(url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (compatible; GitHub Actions; +https://github.com/your-repo)'
+    }
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
-    return BeautifulSoup(response.content, 'xml')
+    return response.content
+    # response = requests.get(url)
+    # response.raise_for_status()
+    # return BeautifulSoup(response.content, 'xml')
 
 # Function to get the last 5 posts from a feed
 def get_last_five_posts(feed, source):
-    items = feed.find_all(['item', 'entry'])[:5]
+    soup = BeautifulSoup(feed, 'html.parser')    
+    items = soup.find_all(['item', 'entry'])[:5]
     posts = []
     for item in items:
         title = item.find('title').text
