@@ -5,8 +5,15 @@ from bs4 import BeautifulSoup
 # https://abelsan.substack.com/feed
 # direct substact URL failed in github, 
 # workaround is to use pipedream 
+# feeds = {
+#     'Substack': 'https://eonx51tpttmlx5j.m.pipedream.net',
+#     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
+#     'Spotify Podcast': 'https://anchor.fm/s/f8df75fc/podcast/rss'
+# }
+
+# for local creation - use above for github actions
 feeds = {
-    'Substack': 'https://eonx51tpttmlx5j.m.pipedream.net',
+    'Substack': 'https://abelsan.substack.com/feed',
     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
     'Spotify Podcast': 'https://anchor.fm/s/f8df75fc/podcast/rss'
 }
@@ -25,7 +32,8 @@ def fetch_feed(url):
 
 # Function to get the last 5 posts from a feed
 def get_last_five_posts(feed, source):
-    soup = BeautifulSoup(feed, 'html.parser')    
+    soup = BeautifulSoup(feed, 'xml')
+    # soup = BeautifulSoup(feed, 'html.parser')  # use for github actions  
     items = soup.find_all(['item', 'entry'])[:5]
     posts = []
     for item in items:

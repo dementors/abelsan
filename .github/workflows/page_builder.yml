@@ -1,39 +1,40 @@
-name: Daily Webpage Generation
-
-on:
-  schedule:
-    - cron: '0 17 * * *' # This cron expression runs the action every day at 17:00 UTC, which is 12:00 noon EST
-  workflow_dispatch:
-
-jobs:
-  generate-webpage:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.12.0' # specifying latest does not work
-
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run Python script
-        run: python page_builder.py
-
-      - name: Configure Git user
-        run: |
-          git config --global user.email "abel@mit.edu"
-          git config --global user.name "abelsan"
-
-      - name: Commit and push changes
-        run: |
-          git add index.html
-          git commit -m "Update index.html"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
+# name: Daily Webpage Generation
+# 
+# on:
+#   schedule:
+#     - cron: '0 17 * * *' # This cron expression runs the action every day at 17:00 UTC, which is 12:00 noon EST
+#   workflow_dispatch:
+# 
+# jobs:
+#   generate-webpage:
+#     runs-on: ubuntu-latest
+# 
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+# 
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.12.0' # specifying latest does not work
+# 
+#       - name: Install Python dependencies
+#         run: pip install -r requirements.txt
+# 
+#       - name: Run Python script
+#         run: python page_builder.py
+# 
+#       - name: Configure Git user
+#         run: |
+#           git config --global user.email "abel@mit.edu"
+#           git config --global user.name "abelsan"
+# 
+#       - name: Commit and push changes
+#         run: |
+#           git add index.html
+#           git commit -m "Update index.html"
+#           git push
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           GITHUB_ACTOR: ${{ github.actor }}
+# 
