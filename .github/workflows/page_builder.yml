@@ -24,6 +24,11 @@ jobs:
       - name: Run Python script
         run: python page_builder.py
 
+      - name: Configure Git user
+        run: |
+          git config --global user.email "abel@mit.edu"
+          git config --global user.name "abelsan"
+
       - name: Commit and push changes
         run: |
           git add index.html
