@@ -58,7 +58,7 @@ html_content = '''
   <head><script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>abelsan</title>
+    <title>abelsan - daily intelligence</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -224,7 +224,7 @@ html_content = '''
   <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
     <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Daily Intelligence</span>
+      <span class="fs-4">Abelsan - Daily Intelligence</span>
     </a>
   </header>
 
