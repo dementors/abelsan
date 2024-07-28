@@ -291,7 +291,8 @@ with open('index.html', 'w', encoding='utf-8') as file:
     file.write(html_full)
 
 # Write min HTML content to file
-with open('podcast.html', 'w', encoding='utf-8') as file:
+mit_site = '../abelsan.github.io/assets/docs/podcast.html'
+with open(mit_site, 'w', encoding='utf-8') as file:
     file.write(html_min)
 
 print('HTML file created successfully.')
