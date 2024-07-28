@@ -51,8 +51,12 @@ for title, url in feeds.items():
     feed = fetch_feed(url)
     feed_data[title] = get_last_five_posts(feed, title)
 
+# varibles for HTML content
+html_full = ''
+html_min = ''
+
 # Create HTML content
-html_content = '''
+html_full = '''
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
@@ -61,8 +65,12 @@ html_content = '''
     <title>abelsan - daily intelligence</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">    
+  </head>
+  <body>
+'''
 
+html_min = '''
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -141,10 +149,6 @@ html_content = '''
         display: block !important;
       }
     </style>
-
-    
-  </head>
-  <body>
 
     <!-- ------------------------------------------------- -->      
     <!--           START COLOR SWITCHING + ICONS           -->
@@ -246,7 +250,7 @@ html_content = '''
 # populate page with feed data
 for title, posts in feed_data.items():
 
-    html_content += f'''
+    html_min += f'''
         <div class="col-md-6">
             <h2 class="text-body-emphasis">{title}</h2>
             <!-- <p>Description.</p> -->
@@ -255,7 +259,7 @@ for title, posts in feed_data.items():
 
 
     for post_title, post_link in posts:
-        html_content += f'''
+        html_min += f'''
                 <li>
                     <a class="icon-link mb-1" href="{post_link}" rel="noopener" target="_blank">
                     <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
@@ -264,22 +268,30 @@ for title, posts in feed_data.items():
                 </li>
             '''
     # close list and div
-    html_content += '</ul></div>'
-    
-html_content += '''
+    html_min += '</ul></div>'
+
+html_min += '''
     </div>
     <!-- --------------- -->      
     <!--   END CONTENT   -->
-    <!-- --------------- -->      
+    <!-- --------------- -->          
+ '''    
 
+html_full += html_min
+
+html_full += '''
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 '''
 
-# Write HTML content to file
+# Write full HTML content to file
 with open('index.html', 'w', encoding='utf-8') as file:
-    file.write(html_content)
+    file.write(html_full)
+
+# Write min HTML content to file
+with open('podcast.html', 'w', encoding='utf-8') as file:
+    file.write(html_min)
 
 print('HTML file created successfully.')
