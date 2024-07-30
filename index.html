@@ -1,15 +1,55 @@
-
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head><script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
+<html lang="en">
+  <head>
+    <script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PK7CBSBGM"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'G-1PK7CBSBGM');
+    </script>
+
+    <!-- Meta tags for search engines -->
+    <meta name="description" content="Dr. Abel Sanchez holds a Ph.D. from the Massachusetts Institute of Technology (MIT). He is the Executive Director of MIT's Geospatial Data Center, architect of &quot;The Internet of Things\&quot; global network, and architect of data analytics platforms for SAP, Ford, Johnson & Johnson, Accenture, Shell, Exxon Mobil, and Boeing. In cyber security, Dr. Sanchez architected impact analysis of large-scale cyber attacks designing Cyber Ranges for the Department of Defense (DOD). In password security, Dr. Sanchez led the design of a password firewall (negative authentication) for the Intelligence Advanced Research Projects Activity (IARPA) agency. In machine learning, addressing fraud detection, Dr. Sanchez designed a situational awareness framework that exploits different perspectives of the same data and assigns risk scores to entities for Accenture. He led the design of a global data infrastructure simulator, modeling follow-the-sun engineering, to evaluate the impact of competing architectures on the performance, availability and reliability of the system for Ford Motor Company. Dr. Sanchez led e-Education software for Microsoft via their I- Campus Program and was faculty co-founder of the Accenture Technology Academy, an online resource for over 200,000 employees. He teaches MIT courses on cybersecurity, engineering computation, and data science and has produced over 1000 educational videos. Learners from 45 unique countries have taken Abel's courses.">
+    <meta name="keywords" content="Dr. Abel Sanchez, MIT, Massachusetts Institute of Technology, Geospatial Data Center, Internet of Things, IoT, data analytics, SAP, Ford, Johnson & Johnson, Accenture, Shell, Exxon Mobil, Boeing, cyber security, Cyber Ranges, Department of Defense, DOD, password security, negative authentication, IARPA, machine learning, fraud detection, situational awareness, risk assessment, global data infrastructure, follow-the-sun engineering, Ford Motor Company, e-Education, Microsoft, I-Campus Program, Accenture Technology Academy, cybersecurity, engineering computation, data science, educational videos, online learning, AI, artificial intelligence, data analysis, Generative AI, technology education">
+    <link rel="canonical" href="http://abel.mit.edu">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 day">
+    <meta name="author" content="Abel Sanchez">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Abel Sanchez">
+    <meta property="og:description" content="Dr. Abel Sanchez, MIT, Massachusetts Institute of Technology, Geospatial Data Center, Internet of Things, IoT, data analytics, SAP, Ford, Johnson & Johnson, Accenture, Shell, Exxon Mobil, Boeing, cyber security, Cyber Ranges, Department of Defense, DOD, password security, negative authentication, IARPA, machine learning, fraud detection, situational awareness, risk assessment, global data infrastructure, follow-the-sun engineering, Ford Motor Company, e-Education, Microsoft, I-Campus Program, Accenture Technology Academy, cybersecurity, engineering computation, data science, educational videos, online learning, AI, artificial intelligence, data analysis, Generative AI, technology education">
+    <meta property="og:image" content="https://abel.mit.edu/assets/img/photos/scientist_01_750.jpg">
+    <meta property="og:url" content="https://abel.mit.edu/">
+    <!-- Twitter Tags -->
+    <meta name="twitter:card" content="Title: Dr. Abel Sanchez: MIT's Leader in Tech and Cybersecurity. Description: Executive Director at MIT's Geospatial Data Center, Dr. Sanchez shapes the future of IoT, data analytics, and cyber security. His expertise benefits giants like SAP, Ford, and Boeing, and his educational impact reaches globally with over 1000 videos and courses in 45 countries. URL: https://abel.mit.edu. Image:https://abel.mit.edu/assets/img/photos/scientist_01_750.jpg.">
+    <meta name="twitter:site" content="@abelsan">
+    <meta name="twitter:title" content="Abel Sanchez">
+    <meta name="twitter:description" content="Dr. Abel Sanchez, Ph.D. from MIT, leads MIT's Geospatial Data Center, designed IoT networks, and analytics platforms for major corporations. Expert in cybersecurity and password security, he developed cyber attack impact analysis for DOD and password firewall for IARPA. In machine learning, he created fraud detection frameworks for Accenture and designed global data infrastructures for Ford. Co-founder of Accenture Technology Academy, he teaches MIT courses in cybersecurity, computation, and data science, producing over 1000 educational videos, reaching learners in 45 countries.">
+    <meta name="twitter:image" content="https://twitter.com/abelsan/photo">
+    <meta name="twitter:creator" content="@abelsan">
+    <meta name="twitter:domain" content="abel.mit.edu">
+    
+    <!-- tab icon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/vnd.microsoft.icon" />    
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/styles.css" rel="stylesheet">
     <title>abelsan - daily intelligence</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">    
   </head>
-  <body>
+  <body>   
+
 
     <style>
       .bd-placeholder-img {
@@ -159,159 +199,17 @@
     <!-- ------------------------------------------------- -->      
     <!--            END COLOR SWITCHING + ICONS            -->
     <!-- ------------------------------------------------- -->      
+    
+    <abel-navbar></abel-navbar>
+    <div id="content"></div>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="assets/js/router.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script type="module" src="assets/docs/bio.js"></script>    
 
-<div class="col-lg-8 mx-auto p-4 py-md-5">
-
-   <!-- ---------- -->      
-   <!--   header   -->
-   <!-- ---------- -->      
-  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-    <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Abelsan - Daily Intelligence</span>
-    </a>
-  </header>
-
-  <main>
-
-    <!-- ------------ -->      
-    <!--   overview   -->
-    <!-- ------------ -->      
-    <h1 class="text-body-emphasis">Overview</h1>
-    <p class="fs-5 col-md-12">Welcome to Daily Intelligence. We explore AI strategy and data insights, focusing on how AI and generative AI are transforming modern organizations. Each post highlights how these technologies drive innovation, boost efficiency, and create competitive advantages. Whether you’re a business leader, tech enthusiast, or curious about AI's future, you'll find valuable insights to navigate the evolving tech landscape.</p>
-    <hr class="col-3 col-md-2 mb-5">
-
-    <!-- ----------------- -->      
-    <!--   START CONTENT   -->
-    <!-- ----------------- -->      
-    <div class="row g-5">
-
-        <div class="col-md-6">
-            <h2 class="text-body-emphasis">Substack</h2>
-            <!-- <p>Description.</p> -->
-            <ul class="list-unstyled ps-0">
-        
-                <li>
-                    <a class="icon-link mb-1" href="https://abelsan.substack.com/p/the-gaming-revolution" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    The gaming revolution
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://abelsan.substack.com/p/cyber-insurance-and-olympics-surveillance" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Cyber Insurance & Olympics Surveillance
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://abelsan.substack.com/p/content-creation-data-extraction" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Content Creation, Data Extraction, and Transformation
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://abelsan.substack.com/p/apple-ai-may-be-boring-but-its-a" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Apple AI may be boring, but it's a winning strategy
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://abelsan.substack.com/p/generative-ai-developments-intelligence" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Generative AI Developments, Intelligence Gathering, and Software Updates
-                    </a>
-                </li>
-            </ul></div>
-        <div class="col-md-6">
-            <h2 class="text-body-emphasis">YouTube</h2>
-            <!-- <p>Description.</p> -->
-            <ul class="list-unstyled ps-0">
-        
-                <li>
-                    <a class="icon-link mb-1" href="https://www.youtube.com/watch?v=4tonVZi7cMw" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    How AI and Art Are Revolutionizing Gaming 🕹️ #ai #aigaming #gaming #art  #technology
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://www.youtube.com/watch?v=5l4A2JEeKe0" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    AI Breakthroughs & Olympic Surveillance Shocker! 🚨#technews #olympics2024 #olympics #ai #boston
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://www.youtube.com/watch?v=yEuQ6Nhz6ug" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    The gaming revolution
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://www.youtube.com/watch?v=vqmadlGWEwA" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    AI Startups Boom, Zuckerberg's AI Vision, and Web-Scraping Breakthrough! 🚀 #ai #meta #matrix
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://www.youtube.com/watch?v=-h4m2fBoEeM" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Cyber Insurance & Olympics Surveillance
-                    </a>
-                </li>
-            </ul></div>
-        <div class="col-md-6">
-            <h2 class="text-body-emphasis">Spotify Podcast</h2>
-            <!-- <p>Description.</p> -->
-            <ul class="list-unstyled ps-0">
-        
-                <li>
-                    <a class="icon-link mb-1" href="https://podcasters.spotify.com/pod/show/abelsan/episodes/The-gaming-revolution-e2mf0fc" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    The gaming revolution
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://podcasters.spotify.com/pod/show/abelsan/episodes/Cyber-Insurance--Olympics-Surveillance-e2meu9c" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Cyber Insurance & Olympics Surveillance
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://podcasters.spotify.com/pod/show/abelsan/episodes/Content-Creation--Data-Extraction--and-Transformation-e2me17t" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Content Creation, Data Extraction, and Transformation
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://podcasters.spotify.com/pod/show/abelsan/episodes/Generative-AI-Developments--Intelligence-Gathering--and-Software-Updates-e2mb06t" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Generative AI Developments, Intelligence Gathering, and Software Updates
-                    </a>
-                </li>
-            
-                <li>
-                    <a class="icon-link mb-1" href="https://podcasters.spotify.com/pod/show/abelsan/episodes/Apples-AI-e2m43j8" rel="noopener" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    Apple's AI
-                    </a>
-                </li>
-            </ul></div>
-    </div>
-    <!-- --------------- -->      
-    <!--   END CONTENT   -->
-    <!-- --------------- -->          
- 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
+
+
+
