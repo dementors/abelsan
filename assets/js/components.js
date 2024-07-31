@@ -26,9 +26,6 @@ class NavBar extends HTMLElement {
                 <a class="nav-link" href="#/bio">Bio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#/research">Research</a>
-              </li>              
-              <li class="nav-item">
                 <a class="nav-link" href="#/teaching">Teaching</a>
               </li>              
               <li class="nav-item">

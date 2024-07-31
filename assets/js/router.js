@@ -80,9 +80,14 @@ window.onload = function(){
         if (innerElement) {            
             scrollIntoView(innerElement);
         }
+
+        // setup tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))        
     };            
 
     function scrollIntoView(id){
         document.getElementById(id).scrollIntoView();
-    }    
+    } 
+
 };
