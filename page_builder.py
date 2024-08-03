@@ -2,16 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 
 # RSS feed URLs
-# https://abelsan.substack.com/feed
-# direct substact URL failed in github, 
-# workaround is to use pipedream 
-# feeds = {
-#     'Substack': 'https://eonx51tpttmlx5j.m.pipedream.net',
-#     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
-#     'Spotify Podcast': 'https://anchor.fm/s/f8df75fc/podcast/rss'
-# }
-
-# for local creation - use above for github actions
 feeds = {
     'Substack': 'https://abelsan.substack.com/feed',
     'YouTube': 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqiQs3iTyDbIy3HvtslAoWQ',
@@ -20,38 +10,77 @@ feeds = {
 
 # Function to fetch and parse the RSS feed
 def fetch_feed(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (compatible; GitHub Actions; +https://github.com/your-repo)'
-    }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
     response.raise_for_status()
-    return response.content
-    # response = requests.get(url)
-    # response.raise_for_status()
-    # return BeautifulSoup(response.content, 'xml')
+    return BeautifulSoup(response.content, 'xml')
 
-# Function to get the last 5 posts from a feed
-def get_last_five_posts(feed, source):
-    soup = BeautifulSoup(feed, 'xml')
-    # soup = BeautifulSoup(feed, 'html.parser')  # use for github actions  
-    items = soup.find_all(['item', 'entry'])[:5]
+# Function to extract feed items
+def get_all_posts(soup, source):
+    items = soup.find_all(['item', 'entry'])  # all items
     posts = []
     for item in items:
-        title = item.find('title').text
+        title = item.find('title').text.strip()
+        description = item.find('description').text.strip()
+        id_tag = item.find(['guid', 'id'])
+        if id_tag:
+            id = id_tag.text.strip()
+        else:
+            id = ''
         if source == 'YouTube':
             link = item.find('link', {'rel': 'alternate'})['href']
         else:
-            link = item.find('link').text if item.find('link') else item.find('link')['href']
-        posts.append((title, link))
+            link = item.find('link').text.strip() if item.find('link') else item.find('link')['href']
+        if source == 'Substack':
+            enclosure = item.find('enclosure')
+            image_url = enclosure['url'] if enclosure else ''
+        else:
+            image_url = ''
+        posts.append({'title': title, 'link': link, 'description': description, 'id': id, 'image_url': image_url})
     return posts
 
 # Fetch and parse all feeds
-feed_data = {}
-for title, url in feeds.items():
-    feed = fetch_feed(url)
-    feed_data[title] = get_last_five_posts(feed, title)
+substack_posts = fetch_feed(feeds['Substack'])
+substack_posts = get_all_posts(substack_posts, 'Substack')
 
-# html payloads
+youtube_posts = fetch_feed(feeds['YouTube'])
+youtube_posts = get_all_posts(youtube_posts, 'YouTube')
+
+spotify_posts = fetch_feed(feeds['Spotify Podcast'])
+spotify_posts = get_all_posts(spotify_posts, 'Spotify Podcast')
+
+# Create a list of items from the Substack feed
+substack_items = [{'title': post['title'], 'link': post['link'], 'description': post['description'], 'image_url': post['image_url']} for post in substack_posts]
+
+# Helper function to find matching post link by title
+def find_matching_post(posts, title):
+    for post in posts:
+        if post['title'] == title:
+            return post['link']
+    return None
+
+# Loop through the Substack titles and look for corresponding titles in Spotify and YouTube
+for item in substack_items:
+    item['spotify_link'] = find_matching_post(spotify_posts, item['title'])
+    item['youtube_link'] = find_matching_post(youtube_posts, item['title'])
+
+# Inspect grouped posts
+print('Grouped Posts:')
+for post in substack_items:
+    print(f"Title: {post['title']}")
+    print(f"Substack Link: {post['link']}")
+    print(f"Substack Description: {post['description']}")
+    print(f"Substack Image URL: {post['image_url']}")
+    if post['spotify_link']:
+        print(f"Spotify Podcast Link: {post['spotify_link']}")
+    if post['youtube_link']:
+        print(f"YouTube Link: {post['youtube_link']}")
+    print('---')
+
+# ----------------
+#     content
+# ----------------
+
+# html payload
 html_full = '''
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
@@ -80,14 +109,14 @@ html_full = '''
     <abel-svgicons></abel-svgicons>
     <abel-navbar></abel-navbar>
 
+'''
+
+html_min = '''
     <!-- -------------------- -->
     <!--     Page content     -->
     <!-- -------------------- -->
 
     <main class="container">
-'''
-
-html_min = '''
       <div class="bg-body-secondary p-5 rounded">
         <h1 class="display-3">Welcome to Abelsan</h1>
         <p class="lead">
@@ -107,54 +136,59 @@ def shorten(s, max_length=30):
     return s[:max_length]
 
 # populate page with feed data
-for title, posts in feed_data.items():
+for post in substack_items:
+    # post links
+    substack_link = ''
+    spotify_link = ''
+    youtube_link = ''
+
+    # post links
+    substack_link = f'''newsletter="{post['link']}"'''
+    if post['spotify_link']:
+        spotify_link = f'''podcast="{post['spotify_link']}"'''
+    if post['youtube_link']:
+        youtube_link = f'''video="{post['youtube_link']}"'''
 
     html_min += f'''
-        <div class="col-md-6">
-            <h2 class="text-body-emphasis">{title}</h2>
-            <!-- <p>Description.</p> -->
-            <ul class="list-unstyled ps-0">
-        '''
+        <abel-card
+            title="{post['title']}"
+            description="{post['description']}"
+            img="{post['image_url']}"
+            {substack_link}
+            {spotify_link}
+            {youtube_link}
+        ></abel-card>
 
-
-    for post_title, post_link in posts:
-        short_title = shorten(post_title)
-        html_min += f'''
-                <li>
-                    <a class="icon-link mb-1" href="{post_link}" rel="noopener" data-bs-toggle="tooltip" data-bs-title="{post_title}" target="_blank">
-                    <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-                    {short_title}
-                    </a>
-                </li>
-            '''
-    # close list and div
-    html_min += '</ul></div>'
+    '''
 
 html_min += '''
-    </div>
-    <!-- --------------- -->      
-    <!--   END CONTENT   -->
-    <!-- --------------- -->
+    </main>
+'''
 
-  </main>
-</div>    
-<!-- ------------------------------- -->      
-<!--   ONLINE DAILY AI CONTENT END   -->
-<!-- ------------------------------- -->      
+# Write html_min to abel.mit.edu
+mit_site = '../abelsan.github.io/assets/docs/podcast.html'
+with open(mit_site, 'w', encoding='utf-8') as file:
+    file.write(html_min)
 
-<hr class="w-100 mb-4">    
-'''    
-
-# append to full html
+# append html_min to html_full
 html_full += html_min
 
-# Write HTML to abelsan locally
-with open('proto.html', 'w', encoding='utf-8') as file:
-    file.write(html_full)
+# finish local page
+html_full += '''
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 
-# # Write HTML to abel.mit.edu
-# mit_site = '../abelsan.github.io/assets/docs/podcast.html'
-# with open(mit_site, 'w', encoding='utf-8') as file:
-#     file.write(html)
+    <!-- Local JS files -->
+    <script src="assets/js/components.js"></script>
+  </body>
+</html>      
+'''    
+
+# Write HTML to abelsan locally
+with open('index.html', 'w', encoding='utf-8') as file:
+    file.write(html_full)
 
 print('HTML file created successfully.')

@@ -127,10 +127,10 @@ class Card extends HTMLElement {
 
     // set image
     if (!img) {
-        img = `<img src="assets/img/no_image.jpeg" class="img-fluid rounded-start w-100 h-100" alt="..." style="object-fit: cover;">`
+        img = `<img src="assets/img/no_image.jpeg" class="rounded-start" alt="...">`;
     }
     else{
-        img = `<img src="${img}" class="img-fluid rounded-start w-100 h-100" alt="..." style="object-fit: cover;">`
+        img = `<img src="${img}" class="rounded-start" alt="...">`;
     }
 
     // set newsletter
@@ -168,8 +168,10 @@ class Card extends HTMLElement {
     this.innerHTML = `
         <div class="card mb-3 w-100">
           <div class="row g-0">
-            <div class="col-3">
-              ${img}
+            <div class="col-3 d-flex align-items-stretch">
+              <div class="img-container w-100">
+                ${img}
+              </div>
             </div>
             <div class="col-9 d-flex align-items-center">
               <div class="card-body">
