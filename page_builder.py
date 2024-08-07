@@ -109,12 +109,9 @@ html_full = '''
     <abel-svgicons></abel-svgicons>
     <abel-navbar></abel-navbar>
 
-'''
-
-html_min = '''
-    <!-- -------------------- -->
-    <!--     Page content     -->
-    <!-- -------------------- -->
+    <!-- ------------------- -->
+    <!--     Page header     -->
+    <!-- ------------------- -->
 
     <main class="container">
       <div class="bg-body-secondary p-5 rounded">
@@ -124,20 +121,38 @@ html_min = '''
           strategy, focusing on how AI and generative AI are transforming modern
           organizations. 
         </p>
-            <a href="https://professional.mit.edu/programs/faculty-profiles/abel-sanchez" title="Courses"><i class="bi bi-mortarboard-fill fs-6"></i> Courses</a> |
-            <a href="https://abelsan.substack.com/"><i class="bi bi-substack fs-6"></i> Blog</a> |             
-            <a href="http://www.linkedin.com/in/abelsanc" title="LinkedIn"><i class="bi bi-linkedin"></i> LinkedIn</a> |    
-            <a href="https://www.youtube.com/@abelsanx" title="YouTube"><i class="bi bi-youtube"></i> YouTube</a> | 
-            <a href="https://podcasters.spotify.com/pod/show/abelsan"><i class="bi bi-mic-fill"></i> Podcast</a> |
-            <a href="https://abelsan.com/" title="Daily Intelligence"><i class="bi bi-cpu-fill"></i> Daily</a>          
+
+        <a href="https://professional.mit.edu/programs/faculty-profiles/abel-sanchez" title="Courses"><i class="bi bi-mortarboard-fill fs-6"></i> Courses</a> |
+        <a href="https://abelsan.substack.com/"><i class="bi bi-substack fs-6"></i> Blog</a> |             
+        <a href="http://www.linkedin.com/in/abelsanc" title="LinkedIn"><i class="bi bi-linkedin"></i> LinkedIn</a> |    
+        <a href="https://www.youtube.com/@abelsanx" title="YouTube"><i class="bi bi-youtube"></i> YouTube</a> | 
+        <a href="https://podcasters.spotify.com/pod/show/abelsan"><i class="bi bi-mic-fill"></i> Podcast</a> |
+        <a href="https://abelsan.com/" title="Daily Intelligence"><i class="bi bi-cpu-fill"></i> Daily</a>          
 
       </div>
+
+      <!-- -------------------- -->
+      <!--     Page content     -->
+      <!-- -------------------- -->
+
+      <h1 class="display-6 p-2">Content</h1>
+'''
+
+html_min = '''
+    <main class="container">      
+
+      <!-- -------------------- -->
+      <!--     Page content     -->
+      <!-- -------------------- -->
 
       <h1 class="display-6 p-2">Content</h1>
 ''' 
 
 def shorten(s, max_length=30):
     return s[:max_length]
+
+# posts content
+content = ''
 
 # populate page with feed data
 for post in substack_items:
@@ -153,7 +168,7 @@ for post in substack_items:
     if post['youtube_link']:
         youtube_link = f'''video="{post['youtube_link']}"'''
 
-    html_min += f'''
+    content += f'''
         <abel-card
             title="{post['title']}"
             description="{post['description']}"
@@ -165,6 +180,8 @@ for post in substack_items:
 
     '''
 
+# append content to html_min
+html_min += content
 html_min += '''
     </main>
 '''
@@ -175,10 +192,11 @@ with open(mit_site, 'w', encoding='utf-8') as file:
     file.write(html_min)
 
 # append html_min to html_full
-html_full += html_min
+html_full += content
 
 # finish local page
 html_full += '''
+    </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
