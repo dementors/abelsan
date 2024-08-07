@@ -122,11 +122,15 @@ html_min = '''
         <p class="lead">
           Welcome to Daily Intelligence. We explore AI technology, data, and
           strategy, focusing on how AI and generative AI are transforming modern
-          organizations. Posts highlight how these technologies drive
-          innovation, boost efficiency, and create competitive advantages.
-          Whether you’re a business leader, technologist, or curious about AI's
-          future, you'll find insights to navigate the evolving tech landscape.
+          organizations. 
         </p>
+            <a href="https://professional.mit.edu/programs/faculty-profiles/abel-sanchez" title="Courses"><i class="bi bi-mortarboard-fill fs-6"></i> Courses</a> |
+            <a href="https://abelsan.substack.com/"><i class="bi bi-substack fs-6"></i> Blog</a> |             
+            <a href="http://www.linkedin.com/in/abelsanc" title="LinkedIn"><i class="bi bi-linkedin"></i> LinkedIn</a> |    
+            <a href="https://www.youtube.com/@abelsanx" title="YouTube"><i class="bi bi-youtube"></i> YouTube</a> | 
+            <a href="https://podcasters.spotify.com/pod/show/abelsan"><i class="bi bi-mic-fill"></i> Podcast</a> |
+            <a href="https://abelsan.com/" title="Daily Intelligence"><i class="bi bi-cpu-fill"></i> Daily</a>          
+
       </div>
 
       <h1 class="display-6 p-2">Content</h1>

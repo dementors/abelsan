@@ -23,7 +23,7 @@ class NavBar extends HTMLElement {
                 <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">                  
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="books.html">Books</a>
               </li>
             </ul>
           </div>
