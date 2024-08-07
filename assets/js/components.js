@@ -8,9 +8,9 @@ class NavBar extends HTMLElement {
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Abelsan</a>
-          <!-- 
+          <!--
           <a class="navbar-brand" href="#/home">
-            <img src="assets/img/logo.svg" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            <img src="assets/img/logo.png" height="30" class="d-inline-block align-top" alt="" loading="lazy">
           </a>
           -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
